@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=65", "wheel"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "bt_api_bitbns"
@@ -44,14 +44,15 @@ dev = ["pytest>=7.0", "ruff>=0.1.0"]
 all = ["bt_api_bitbns[dev]"]
 
 [project.urls]
-Homepage = "https://github.com/cloudQuant/bt_api_bitbns"
 Documentation = "https://bt-api-btbns.readthedocs.io/"
 Repository = "https://github.com/cloudQuant/bt_api_bitbns"
 Issues = "https://github.com/cloudQuant/bt_api_bitbns/issues"
 Changelog = "https://github.com/cloudQuant/bt_api_bitbns/releases"
+Homepage = "https://github.com/cloudQuant/bt_api_bitbns"
 
-[tool.hatch.build.targets.wheel]
-packages = ["src/bt_api_bitbns"]
+[tool.setuptools.packages.find]
+where = ["src"]
+
 
 [tool.ruff]
 line-length = 100
@@ -68,8 +69,30 @@ ignore = [
     "G004", "BLE001", "EM102",
 ]
 
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S106", "S105", "S311", "E402", "PERF401", "N806", "S108"]
+"examples/**" = ["S106", "S105", "S311", "E402", "PERF401", "N806", "S108"]
+"scripts/**" = ["S106", "S105", "S311", "E402", "PERF401", "N806", "S108"]
+
+
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "-v --tb=short"
+asyncio_default_fixture_loop_scope = "function"
+markers = [
+    "network: Tests requiring network access",
+    "kline: Kline/bar data tests",
+    "orderbook: Orderbook/depth data tests",
+    "ticker: Public ticker data tests",
+    "public_trade: Public trade data tests",
+    "auth_account: Authenticated account data tests",
+    "auth_order: Authenticated order tests",
+    "auth_position: Authenticated position tests",
+]

@@ -23,7 +23,7 @@ class TestBitbnsRequestTickerData:
         """Test init_data with ticker info."""
         data = {"lastPrice": "50000.0", "bidPrice": "49990.0", "askPrice": "50010.0"}
         ticker = BitbnsRequestTickerData(
-            data, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True
+            data, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True,
         )
         ticker.init_data()
 
@@ -32,7 +32,7 @@ class TestBitbnsRequestTickerData:
     def test_get_all_data(self):
         """Test get_all_data - base class raises NotImplementedError."""
         ticker = BitbnsRequestTickerData(
-            {}, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True,
         )
         with pytest.raises(NotImplementedError):
             ticker.get_all_data()
@@ -40,7 +40,7 @@ class TestBitbnsRequestTickerData:
     def test_str_representation(self):
         """Test __str__ method - base class raises NotImplementedError."""
         ticker = BitbnsRequestTickerData(
-            {}, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True
+            {}, symbol_name="BTCINR", asset_type="SPOT", has_been_json_encoded=True,
         )
         with pytest.raises(NotImplementedError):
             str(ticker)

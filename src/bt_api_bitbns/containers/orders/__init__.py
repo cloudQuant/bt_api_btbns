@@ -36,11 +36,13 @@ class BitbnsOrderData(OrderData):
         self.order_id = from_dict_get_string(data, "id") or from_dict_get_string(data, "entry_id")
         self.order_side = from_dict_get_string(data, "side")
         self.order_type = from_dict_get_string(data, "type") or from_dict_get_string(
-            data, "orderType",
+            data,
+            "orderType",
         )
         self.order_price = from_dict_get_float(data, "price") or from_dict_get_float(data, "rate")
         self.order_size = from_dict_get_float(data, "amount") or from_dict_get_float(
-            data, "quantity",
+            data,
+            "quantity",
         )
         status = from_dict_get_string(data, "status")
         if status:

@@ -46,7 +46,9 @@ class BitbnsRequestData(Feed):
         if secret:
             message = str(timestamp) + body
             return hmac.new(
-                secret.encode("utf-8"), message.encode("utf-8"), hashlib.sha512,
+                secret.encode("utf-8"),
+                message.encode("utf-8"),
+                hashlib.sha512,
             ).hexdigest()
         return ""
 
@@ -74,7 +76,10 @@ class BitbnsRequestData(Feed):
         method = path.split()[0] if " " in path else "GET"
         request_path = "/" + path.split()[1] if " " in path else path
         headers = self._get_headers(
-            method, request_path, params, body if isinstance(body, str) else "",
+            method,
+            request_path,
+            params,
+            body if isinstance(body, str) else "",
         )
         base_url = self._get_base_url(path)
 
@@ -95,7 +100,10 @@ class BitbnsRequestData(Feed):
         method = path.split()[0] if " " in path else "GET"
         request_path = "/" + path.split()[1] if " " in path else path
         headers = self._get_headers(
-            method, request_path, params, body if isinstance(body, str) else "",
+            method,
+            request_path,
+            params,
+            body if isinstance(body, str) else "",
         )
         base_url = self._get_base_url(path)
 

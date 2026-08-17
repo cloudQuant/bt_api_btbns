@@ -96,3 +96,5 @@ markers = [
     "auth_order: Authenticated order tests",
     "auth_position: Authenticated position tests",
 ]
+[project.entry-points."bt_api.plugins"]
+bitbns = "bt_api_bitbns.plugin:register_plugin"
